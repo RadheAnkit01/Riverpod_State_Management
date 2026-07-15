@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_statemanagement/multi_state_provider.dart';
+// import 'package:riverpod_statemanagement/consumer_stateful_widget_screen.dart';
+import 'package:riverpod_statemanagement/future%20provider/future_provider.dart';
+// import 'package:riverpod_statemanagement/multi_state_provider.dart';
+// import 'package:riverpod_statemanagement/practice.dart';
 // import 'package:riverpod_statemanagement/provider.dart';
 // import 'package:riverpod_statemanagement/state_provider.dart';
 
@@ -14,7 +17,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // return ProviderScope(child: MaterialApp(home: const StateProviderScreen()));
     return ProviderScope(
-      child: MaterialApp(home: const MultiStateProviderScreen()),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: const FutureProviderScreen(),
+      ),
     );
   }
 }

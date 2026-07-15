@@ -1,0 +1,23 @@
+Notes for Riverpod State Management.
+
+1. Provider 
+    When you want to use static varibal globally then used provider.
+
+2. State Provider
+    When you want to use a dynamic variable globally then used this.
+
+3. Consumer
+    It consume the value of provider, so we don't need to rebuild the whole ui it rebuild only the part of the consumer of that provider.
+
+4. watch 
+    it watch the value all the time when it got changed
+
+5. read
+    it read the value for only one time when event occur.
+
+6. notifier
+    it tell the provider that the state of this value is changing so all watcher can see the changed. 
+
+7. ConsumerWidget (stateless) vs ConsumerStatefulWidget(stateful)
+    Both works same but in statefull we have a life cycle of widget states like initState, dispose() and more. So when we need to maintain lifecycle of widgets states then we can use stateful.
+
