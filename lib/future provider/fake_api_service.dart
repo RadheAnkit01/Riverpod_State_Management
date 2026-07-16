@@ -1,6 +1,6 @@
 import 'dart:math';
 
-class FakeService {
+class FakeApiService {
   Future<String> fetchGreeting(String name) async {
     await Future.delayed(const Duration(seconds: 2));
     if (Random().nextDouble() < 0.5) {

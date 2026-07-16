@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_statemanagement/future%20provider/fake_api.dart';
+import 'package:riverpod_statemanagement/future%20provider/fake_api_service.dart';
 
-final fakeApiProvider = Provider((_) => FakeService());
+final fakeApiProvider = Provider((_) => FakeApiService());
 
 final greetingProvider = FutureProvider((Ref ref) async {
   final service = ref.read(fakeApiProvider);
@@ -13,33 +13,40 @@ class FutureProviderScreen extends ConsumerWidget {
   const FutureProviderScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final greetingAsync = ref.watch(greetingProvider);
+    debugPrint("build called");
     return Scaffold(
       appBar: AppBar(),
-      body: Center(
-        child: greetingAsync.when(
-          skipLoadingOnRefresh: false,
-          data: (data) {
-            return Text(
-              data,
-              style: TextStyle(fontSize: 25, color: Colors.black),
-            );
-          },
-          error: (err, stack) {
-            return Column(
-              children: [
-                Text(err.toString(), style: TextStyle(color: Colors.red)),
-                ElevatedButton(
-                  onPressed: () => ref.refresh(greetingProvider),
-                  child: Text("retry"),
-                ),
-              ],
-            );
-          },
-          loading: () {
-            return CircularProgressIndicator();
-          },
-        ),
+      body: Consumer(
+        builder: (context, ref, child) {
+          final greetingAsync = ref.watch(greetingProvider);
+          return Center(
+            child: greetingAsync.when(
+              skipLoadingOnRefresh: false,
+              data: (data) {
+                return Text(
+                  data,
+                  style: TextStyle(fontSize: 25, color: Colors.black),
+                );
+              },
+              error: (err, stack) {
+                debugPrint(err.toString());
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(err.toString(), style: TextStyle(color: Colors.red)),
+                    ElevatedButton(
+                      onPressed: () => ref.refresh(greetingProvider),
+                      child: Text("retry"),
+                    ),
+                  ],
+                );
+              },
+              loading: () {
+                return CircularProgressIndicator();
+              },
+            ),
+          );
+        },
       ),
     );
   }
