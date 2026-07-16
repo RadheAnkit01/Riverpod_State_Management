@@ -14,7 +14,6 @@ class _TodoScreenState extends ConsumerState<TodoScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     textEditingController.dispose();
     super.dispose();
   }

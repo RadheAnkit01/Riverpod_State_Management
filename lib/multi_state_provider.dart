@@ -53,7 +53,7 @@ class MultiStateProviderScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print("build");
+    // print("build");
     final sliderVal = ref.watch(sliderProvider);
     return Scaffold(
       appBar: AppBar(title: Text("Multiple State Provider")),

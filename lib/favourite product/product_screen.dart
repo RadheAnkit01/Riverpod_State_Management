@@ -58,9 +58,7 @@ class ProductScreen extends ConsumerWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Drawer();
-        },
+        onPressed: () {},
         child: Icon(Icons.edit),
       ),
     );

@@ -106,7 +106,7 @@ class _StateProviderScreenState extends ConsumerState {
           Consumer(
             builder: (context, ref, child) {
               final count = ref.watch(counter);
-              print('build 1');
+              // print('build 1');
               return Center(
                 child: Text(
                   count.toString(),
@@ -118,7 +118,7 @@ class _StateProviderScreenState extends ConsumerState {
           Consumer(
             builder: (context, ref, child) {
               final switchVal = ref.watch(switchProvider);
-              print("build 2");
+              // print("build 2");
               return Switch(
                 value: switchVal,
                 onChanged: (val) {
