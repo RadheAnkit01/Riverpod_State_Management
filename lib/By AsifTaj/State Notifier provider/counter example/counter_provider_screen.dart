@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_statemanagement/State%20Notifier%20provider/counter%20example/counter_provider_controller.dart';
+import 'package:riverpod_statemanagement/By%20AsifTaj/State%20Notifier%20provider/counter%20example/counter_provider_controller.dart';
 
 class CounterProviderScreen extends ConsumerWidget {
   const CounterProviderScreen({super.key});

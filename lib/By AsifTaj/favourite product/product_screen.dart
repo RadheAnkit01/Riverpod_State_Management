@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_statemanagement/favourite%20product/product_provider_controller.dart';
+import 'package:riverpod_statemanagement/By%20AsifTaj/favourite%20product/product_provider_controller.dart';
 
 class ProductScreen extends ConsumerWidget {
   const ProductScreen({super.key});

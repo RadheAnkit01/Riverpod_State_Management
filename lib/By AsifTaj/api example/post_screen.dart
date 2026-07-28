@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_statemanagement/api%20example/post_model.dart';
+import 'package:riverpod_statemanagement/By%20AsifTaj/api%20example/post_model.dart';
 
 class PostScreen extends ConsumerWidget {
   const PostScreen({super.key});

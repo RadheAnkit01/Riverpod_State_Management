@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_statemanagement/favourite%20product/product_model.dart';
+import 'package:riverpod_statemanagement/By%20AsifTaj/favourite%20product/product_model.dart';
 
 final productProvider =
     StateNotifierProvider<ProductProviderController, List<Product>>((ref) {
