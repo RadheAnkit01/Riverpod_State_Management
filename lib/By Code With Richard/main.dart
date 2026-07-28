@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/state%20provider/screen/counter_screen.dart';
+import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/screen/counter_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyRiverpodApp()));
