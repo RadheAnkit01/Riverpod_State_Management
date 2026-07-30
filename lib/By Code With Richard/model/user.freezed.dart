@@ -23,7 +23,7 @@ User _$UserFromJson(Map<String, dynamic> json) {
 mixin _$User {
   int get id => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   int get age => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
@@ -40,7 +40,7 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res, User>;
   @useResult
-  $Res call({int id, String firstName, String lastName, int age});
+  $Res call({int id, String firstName, String email, int age});
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   $Res call({
     Object? id = null,
     Object? firstName = null,
-    Object? lastName = null,
+    Object? email = null,
     Object? age = null,
   }) {
     return _then(
@@ -73,9 +73,9 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
                 ? _value.firstName
                 : firstName // ignore: cast_nullable_to_non_nullable
                       as String,
-            lastName: null == lastName
-                ? _value.lastName
-                : lastName // ignore: cast_nullable_to_non_nullable
+            email: null == email
+                ? _value.email
+                : email // ignore: cast_nullable_to_non_nullable
                       as String,
             age: null == age
                 ? _value.age
@@ -95,7 +95,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   ) = __$$UserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String firstName, String lastName, int age});
+  $Res call({int id, String firstName, String email, int age});
 }
 
 /// @nodoc
@@ -112,7 +112,7 @@ class __$$UserImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? firstName = null,
-    Object? lastName = null,
+    Object? email = null,
     Object? age = null,
   }) {
     return _then(
@@ -125,9 +125,9 @@ class __$$UserImplCopyWithImpl<$Res>
             ? _value.firstName
             : firstName // ignore: cast_nullable_to_non_nullable
                   as String,
-        lastName: null == lastName
-            ? _value.lastName
-            : lastName // ignore: cast_nullable_to_non_nullable
+        email: null == email
+            ? _value.email
+            : email // ignore: cast_nullable_to_non_nullable
                   as String,
         age: null == age
             ? _value.age
@@ -144,7 +144,7 @@ class _$UserImpl implements _User {
   const _$UserImpl({
     this.id = -1,
     this.firstName = "",
-    this.lastName = "",
+    this.email = "",
     this.age = -1,
   });
 
@@ -159,14 +159,14 @@ class _$UserImpl implements _User {
   final String firstName;
   @override
   @JsonKey()
-  final String lastName;
+  final String email;
   @override
   @JsonKey()
   final int age;
 
   @override
   String toString() {
-    return 'User(id: $id, firstName: $firstName, lastName: $lastName, age: $age)';
+    return 'User(id: $id, firstName: $firstName, email: $email, age: $age)';
   }
 
   @override
@@ -177,14 +177,13 @@ class _$UserImpl implements _User {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.age, age) || other.age == age));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, firstName, lastName, age);
+  int get hashCode => Object.hash(runtimeType, id, firstName, email, age);
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -204,7 +203,7 @@ abstract class _User implements User {
   const factory _User({
     final int id,
     final String firstName,
-    final String lastName,
+    final String email,
     final int age,
   }) = _$UserImpl;
 
@@ -215,7 +214,7 @@ abstract class _User implements User {
   @override
   String get firstName;
   @override
-  String get lastName;
+  String get email;
   @override
   int get age;
 

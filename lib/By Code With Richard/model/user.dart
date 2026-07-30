@@ -11,7 +11,7 @@ class User with _$User {
   const factory User({
     @Default(-1) int id,
     @Default("") String firstName,
-    @Default("") String lastName,
+    @Default("") String email,
     @Default(-1) int age,
   }) = _User;
 
