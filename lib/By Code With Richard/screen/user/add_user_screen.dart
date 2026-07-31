@@ -23,6 +23,7 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
     _usernameController = TextEditingController();
     _ageController = TextEditingController();
     _emailController = TextEditingController();
+    _listnerManual();
   }
 
   @override
@@ -37,7 +38,7 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    _listner();
+    // _listner(); // added listen manual
     final users = ref.read(usersProvider.notifier);
     return Scaffold(
       appBar: AppBar(title: Text("Add User Screen")),
@@ -146,7 +147,7 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
     );
   }
 
-  //
+  // Method 1 not recommended
   void _listner() {
     // method 1
 
@@ -182,6 +183,33 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
 
     //for error
     ref.listen(usersProvider.select((state) => state.error), (previous, next) {
+      if (next != null) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(title: Text("error"), content: Text(next));
+          },
+        );
+      }
+    });
+  }
+
+  void _listnerManual() {
+    //for added
+    ref.listenManual(usersProvider.select((state) => state.isAdded), (
+      previous,
+      next,
+    ) {
+      if (next) {
+        Navigator.pop(context);
+      }
+    });
+
+    //for error
+    ref.listenManual(usersProvider.select((state) => state.error), (
+      previous,
+      next,
+    ) {
       if (next != null) {
         showDialog(
           context: context,
