@@ -8,7 +8,7 @@ final counterAsyncNotifierProvider =
 class CounterAsyncNotifier extends AsyncNotifier<int> {
   @override
   FutureOr<int> build() {
-    final value = Future.delayed(Duration(seconds: 3), () {
+    final value = Future.delayed(Duration(seconds: 1), () {
       return 0;
     });
     return value;
@@ -19,7 +19,7 @@ class CounterAsyncNotifier extends AsyncNotifier<int> {
     state = const AsyncLoading();
     //for calling apis;
     final value = await Future.delayed(
-      Duration(seconds: 2),
+      Duration(seconds: 1),
       () => state.value ?? 0,
     );
     //saving state
@@ -31,7 +31,7 @@ class CounterAsyncNotifier extends AsyncNotifier<int> {
     state = const AsyncLoading();
     //for calling apis;
     final value = await Future.delayed(
-      Duration(seconds: 2),
+      Duration(seconds: 1),
       () => state.value ?? 0,
     );
     //saving state
@@ -42,7 +42,14 @@ class CounterAsyncNotifier extends AsyncNotifier<int> {
   Future<void> reset() async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
-      // return await Future.delayed(Duration(seconds: 3), () => 0);
+      return await Future.delayed(Duration(seconds: 1), () => 0);
+    });
+  }
+
+  // by using guard -> error handling itself, we dont need to handle error ourself
+  Future<void> error() async {
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
       return Future.error(Exception("error"));
     });
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/provider/async%20notifier%20provider/counter_async_provider.dart';
+import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/screen/user/user_details_screen.dart';
 // import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/screen/user/add_user_screen.dart';
 import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/screen/user/user_list_screen.dart';
 import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/screen/user_screen.dart';
@@ -48,6 +49,16 @@ class CounterScreenRichard extends ConsumerWidget {
             },
             child: Text("User List Screen"),
           ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.red[100]),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => UserDetailsScreen()),
+              );
+            },
+            child: Text("Show first User, Consumer Widget Example"),
+          ),
         ],
       ),
       floatingActionButton: Row(
@@ -78,6 +89,15 @@ class CounterScreenRichard extends ConsumerWidget {
               counterNotifier.reset();
             },
             child: Text("reset"),
+          ),
+          SizedBox(width: 10),
+          FloatingActionButton(
+            heroTag: "error",
+            onPressed: () {
+              // counterNotifier.state--;
+              counterNotifier.error();
+            },
+            child: Text("error"),
           ),
         ],
       ),

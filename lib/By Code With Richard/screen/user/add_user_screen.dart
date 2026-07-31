@@ -148,52 +148,6 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
   }
 
   // Method 1 not recommended
-  void _listner() {
-    // method 1
-
-    // ref.listen(usersProvider, (previous, next) {
-    //   if (next.isAdded) {
-    //     Navigator.pop(context);
-    //   }
-
-    //   if (next.error != null) {
-    //     showDialog(
-    //       context: context,
-    //       builder: (context) {
-    //         return AlertDialog(
-    //           title: Text("error"),
-    //           content: Center(child: Text(next.error!)),
-    //         );
-    //       },
-    //     );
-    //   }
-    // });
-
-    // method 2 recommended
-
-    //for added
-    ref.listen(usersProvider.select((state) => state.isAdded), (
-      previous,
-      next,
-    ) {
-      if (next) {
-        Navigator.pop(context);
-      }
-    });
-
-    //for error
-    ref.listen(usersProvider.select((state) => state.error), (previous, next) {
-      if (next != null) {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(title: Text("error"), content: Text(next));
-          },
-        );
-      }
-    });
-  }
-
   void _listnerManual() {
     //for added
     ref.listenManual(usersProvider.select((state) => state.isAdded), (
