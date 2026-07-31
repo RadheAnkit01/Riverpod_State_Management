@@ -54,64 +54,34 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
                     hint: "Enter Id",
                     controller: _idController,
                     keyBoardType: TextInputType.number,
-                    validator: (p0) {
-                      if (p0 == null || p0.length <= 3) {
-                        return "Id min length should be 4";
-                      } else {
-                        return null;
-                      }
-                    },
                   ),
                   SizedBox(height: 10),
                   customTextFormField(
                     hint: "Enter Username",
                     controller: _usernameController,
                     keyBoardType: TextInputType.text,
-                    validator: (p0) {
-                      if (p0 == null || p0.length <= 4) {
-                        return "Id min length should be 5";
-                      } else {
-                        return null;
-                      }
-                    },
                   ),
                   SizedBox(height: 10),
                   customTextFormField(
                     hint: "Enter Age",
                     controller: _ageController,
                     keyBoardType: TextInputType.number,
-                    validator: (p0) {
-                      if (p0 == null || int.parse(p0) < 18) {
-                        return "Only 18 + allowed here";
-                      } else {
-                        return null;
-                      }
-                    },
                   ),
                   SizedBox(height: 10),
                   customTextFormField(
                     hint: "Enter Email",
                     controller: _emailController,
                     keyBoardType: TextInputType.emailAddress,
-                    validator: (p0) {
-                      if (p0 == null ||
-                          !p0.contains("@") ||
-                          !p0.contains(".")) {
-                        return "Enter a valid mail";
-                      } else {
-                        return null;
-                      }
-                    },
                   ),
                   SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () {
-                      print("button pressed");
+                      // print("button pressed");
                       final isValid =
                           _formKey.currentState?.validate() ?? false;
-                      print(
-                        "form is ${isValid == true ? "valid" : "not valid"}",
-                      );
+                      // print(
+                      //   "form is ${isValid == true ? "valid" : "not valid"}",
+                      // );
                       if (isValid) {
                         users.addUser(
                           User(
@@ -121,10 +91,32 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
                             id: int.parse(_idController.text),
                           ),
                         );
-                        print("user added");
+                        // print("user added");
                       }
                     },
                     child: Text("Add user"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      // print("button pressed");
+                      final isValid =
+                          _formKey.currentState?.validate() ?? false;
+                      // print(
+                      //   "form is ${isValid == true ? "valid" : "not valid"}",
+                      // );
+                      if (isValid) {
+                        users.addUserWithError(
+                          User(
+                            age: int.parse(_ageController.text),
+                            firstName: _usernameController.text,
+                            email: _emailController.text,
+                            id: int.parse(_idController.text),
+                          ),
+                        );
+                        // print("user added");
+                      }
+                    },
+                    child: Text("Add user with error"),
                   ),
                 ],
               ),
@@ -154,10 +146,49 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
     );
   }
 
+  //
   void _listner() {
-    ref.listen(usersProvider, (previous, next) {
-      if (next.isAdded) {
+    // method 1
+
+    // ref.listen(usersProvider, (previous, next) {
+    //   if (next.isAdded) {
+    //     Navigator.pop(context);
+    //   }
+
+    //   if (next.error != null) {
+    //     showDialog(
+    //       context: context,
+    //       builder: (context) {
+    //         return AlertDialog(
+    //           title: Text("error"),
+    //           content: Center(child: Text(next.error!)),
+    //         );
+    //       },
+    //     );
+    //   }
+    // });
+
+    // method 2 recommended
+
+    //for added
+    ref.listen(usersProvider.select((state) => state.isAdded), (
+      previous,
+      next,
+    ) {
+      if (next) {
         Navigator.pop(context);
+      }
+    });
+
+    //for error
+    ref.listen(usersProvider.select((state) => state.error), (previous, next) {
+      if (next != null) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(title: Text("error"), content: Text(next));
+          },
+        );
       }
     });
   }

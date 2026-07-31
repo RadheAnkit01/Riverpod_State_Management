@@ -8,21 +8,27 @@ class UserListScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final users = ref.watch(usersProvider);
+    //for this, it will rebuild also when error occur but it should not rebuild.
+    // final users = ref.watch(usersProvider);
+
+    //to rebuild only when list changed not when other state changed.
+    final users = ref.watch(usersProvider.select((selector) => selector.users));
+    print("build called");
+
     return Scaffold(
       appBar: AppBar(title: Text("User List Screen")),
       body: Center(
         child: ListView.builder(
-          itemCount: users.users.length,
+          itemCount: users.length,
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
               style: ListTileStyle.drawer,
               title: Column(
                 children: [
-                  Text(users.users[index].id.toString()),
-                  Text(users.users[index].firstName),
-                  Text(users.users[index].email),
-                  Text(users.users[index].age.toString()),
+                  Text(users[index].id.toString()),
+                  Text(users[index].firstName),
+                  Text(users[index].email),
+                  Text(users[index].age.toString()),
                 ],
               ),
             );
