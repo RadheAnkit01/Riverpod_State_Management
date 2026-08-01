@@ -1,7 +1,8 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/model/user.dart';
 import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/state/user_state.dart';
+import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/usecase/fetch_user.dart';
 
 part 'users_view_model.g.dart';
 
@@ -32,6 +33,12 @@ class UsersViewModel extends _$UsersViewModel {
       // isAdded: true,
       error: "something went wrong",
     );
+  }
+
+  //fetch users at init state
+  Future<void> fetchUser() async {
+    final newUser = await ref.watch(fetchUserProvider).fetchUser();
+    state = state.copyWith(isLodaing: false, users: newUser);
   }
 }
 
