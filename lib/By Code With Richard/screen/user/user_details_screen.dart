@@ -14,7 +14,7 @@ class UserDetailsScreen extends StatelessWidget {
         child: Consumer(
           builder: (context, ref, child) {
             final users = ref.watch(
-              usersProvider.select((selector) => selector.users),
+              usersViewModelProvider.select((selector) => selector.users),
             );
             if (users.isEmpty) {
               return Center(child: Text("No User Found "));
@@ -36,7 +36,7 @@ class UserDetailsScreen extends StatelessWidget {
           return FloatingActionButton(
             onPressed: () {
               ref
-                  .read(usersProvider.notifier)
+                  .read(usersViewModelProvider.notifier)
                   .addUser(
                     User(
                       id: 121,

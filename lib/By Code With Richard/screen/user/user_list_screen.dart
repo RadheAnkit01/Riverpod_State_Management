@@ -12,7 +12,9 @@ class UserListScreen extends ConsumerWidget {
     // final users = ref.watch(usersProvider);
 
     //to rebuild only when list changed not when other state changed.
-    final users = ref.watch(usersProvider.select((selector) => selector.users));
+    final users = ref.watch(
+      usersViewModelProvider.select((selector) => selector.users),
+    );
     print("build called");
 
     return Scaffold(

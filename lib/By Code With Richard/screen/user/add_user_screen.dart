@@ -39,7 +39,7 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
   @override
   Widget build(BuildContext context) {
     // _listner(); // added listen manual
-    final users = ref.read(usersProvider.notifier);
+    final users = ref.read(usersViewModelProvider.notifier);
     return Scaffold(
       appBar: AppBar(title: Text("Add User Screen")),
       body: Padding(
@@ -150,17 +150,26 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
   // Method 1 not recommended
   void _listnerManual() {
     //for added
-    ref.listenManual(usersProvider.select((state) => state.isAdded), (
+    ref.listenManual(usersViewModelProvider.select((state) => state.isAdded), (
       previous,
       next,
     ) {
       if (next) {
+        // debugPrint(
+        //   "before refresh/invalidate : ${ref.watch(usersProvider).users.toString()}",
+        // );
+        // ref.invalidate(usersProvider);
+        // // ignore: unused_local_variable
+        // // final state = ref.refresh(usersProvider);
+        // debugPrint(
+        //   "after refresh/invalidate : ${ref.watch(usersProvider).users.toString()}",
+        // );
         Navigator.pop(context);
       }
     });
 
     //for error
-    ref.listenManual(usersProvider.select((state) => state.error), (
+    ref.listenManual(usersViewModelProvider.select((state) => state.error), (
       previous,
       next,
     ) {
