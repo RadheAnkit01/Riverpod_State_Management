@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/provider/family%20provider/user_list_provider.dart';
 import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/screen/user/add_user_screen.dart';
 import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/view_model/users_view_model.dart';
 
@@ -23,12 +25,28 @@ class _UserListScreenState extends ConsumerState<UserListScreen> {
   Widget build(BuildContext context) {
     //for this, it will rebuild also when error occur but it should not rebuild.
     // final users = ref.watch(usersProvider);
-
+    //studyuk.online
     //to rebuild only when list changed not when other state changed.
     final users = ref.watch(
       usersViewModelProvider.select((selector) => selector.users),
     );
-    print("build called");
+    if (kDebugMode) {
+      print("build called");
+    }
+
+    // provider family passing parameter uses.
+    final userWhoseId1 = ref.watch(userListProvider(1));
+    if (kDebugMode) {
+      print(userWhoseId1);
+    }
+
+    //provider multi arguments uses through riverpod generator .
+    final userWithMultiParam = ref.watch(
+      userProvider(1, 22, userName: "Ankit"),
+    );
+    if (kDebugMode) {
+      print(userWithMultiParam);
+    }
 
     return Scaffold(
       appBar: AppBar(title: Text("User List Screen")),
