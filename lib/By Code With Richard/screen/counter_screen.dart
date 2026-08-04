@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/provider/async%20notifier%20provider/counter_async_provider.dart';
-import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/screen/user/future_user_list_screen.dart';
-import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/screen/user/user_details_screen.dart';
+// import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/screen/user/future_user_list_screen.dart';
+// import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/screen/user/user_details_screen.dart';
 // import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/screen/user/add_user_screen.dart';
-import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/screen/user/user_list_screen.dart';
-import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/screen/user_screen.dart';
+// import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/screen/user/user_list_screen.dart';
+// import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/screen/user/user_stream_screen.dart';
+// import 'package:riverpod_statemanagement/By%20Code%20With%20Richard/screen/user_screen.dart';
 
 class CounterScreenRichard extends ConsumerWidget {
   const CounterScreenRichard({super.key});
@@ -33,42 +35,44 @@ class CounterScreenRichard extends ConsumerWidget {
           ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red[100]),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => UserScreen()),
-              );
+              context.go("userScreen");
             },
             child: Text("User Screen"),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red[100]),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => UserListScreen()),
-              );
+              context.go("userListScreen");
             },
             child: Text("User List Screen"),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red[100]),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => UserDetailsScreen()),
-              );
+              context.go("userDetailScreen");
             },
             child: Text("Show first User, Consumer Widget Example"),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red[100]),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => FutureUserListScreen()),
-              );
+              context.go("futureUserListScreen");
             },
             child: Text("Future List, async provider"),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.red[100]),
+            onPressed: () {
+              context.go("userStreamScreen");
+            },
+            child: Text("Stream of user, stream provider"),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.red[100]),
+            onPressed: () {
+              context.go("coinStatus");
+            },
+            child: Text("Coin mini project, coin status screen"),
           ),
         ],
       ),
